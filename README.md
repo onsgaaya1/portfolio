@@ -1,36 +1,151 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🌿 Portfolio Ons Gaaya — Next.js Setup Guide
 
-## Getting Started
+## STEP 1 — Créer le projet Next.js (5 min)
 
-First, run the development server:
+Ouvre ton terminal (CMD ou PowerShell) et tape :
+
+```bash
+npx create-next-app@latest portfolio --typescript --tailwind --app --eslint --no-src-dir --import-alias "@/*"
+```
+
+Quand il te pose des questions :
+- Would you like to use src/ directory? → **No**
+- Would you like to customize the import alias? → **No**
+
+```bash
+cd portfolio
+```
+
+---
+
+## STEP 2 — Copier les fichiers (3 min)
+
+Depuis le zip téléchargé, copie EXACTEMENT cette structure dans ton dossier `portfolio/` :
+
+```
+portfolio/
+├── app/
+│   ├── globals.css          ← REMPLACE le fichier existant
+│   ├── layout.tsx           ← REMPLACE le fichier existant
+│   ├── page.tsx             ← REMPLACE le fichier existant
+│   ├── projects/
+│   │   └── page.tsx         ← CRÉER ce dossier et fichier
+│   ├── about/
+│   │   └── page.tsx         ← CRÉER ce dossier et fichier
+│   └── contact/
+│       └── page.tsx         ← CRÉER ce dossier et fichier
+├── components/
+│   ├── Navbar.tsx           ← CRÉER ce dossier et fichier
+│   ├── Footer.tsx
+│   └── ProjectModal.tsx
+├── lib/
+│   └── data.ts              ← CRÉER ce dossier et fichier
+└── tailwind.config.ts       ← REMPLACE le fichier existant
+```
+
+---
+
+## STEP 3 — Ta photo de profil
+
+1. Renomme ta photo en `profile.jpg`
+2. Copie-la dans le dossier `public/`
+3. Chemin final : `public/profile.jpg`
+
+---
+
+## STEP 4 — Ajouter tes rapports PDF
+
+Dans `lib/data.ts`, pour chaque projet où tu as un rapport :
+
+1. Upload le PDF sur **Google Drive**
+2. Clique droit → "Partager" → "Tout le monde avec le lien peut voir"
+3. Copie le lien
+4. Dans `lib/data.ts`, trouve le projet et ajoute :
+
+```typescript
+report: "https://drive.google.com/file/d/TON_ID/view",
+```
+
+Exemple pour Moodi :
+```typescript
+{
+  id: "moodi",
+  ...
+  report: "https://drive.google.com/file/d/1abc123.../view",
+  ...
+}
+```
+
+---
+
+## STEP 5 — Ajouter tes vidéos démo (quand tu les auras)
+
+Pour chaque vidéo YouTube ou Google Drive :
+```typescript
+video: "https://www.youtube.com/embed/TON_VIDEO_ID",
+// ou
+video: "https://drive.google.com/file/d/TON_ID/preview",
+```
+
+---
+
+## STEP 6 — Tester en local
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Ouvre **http://localhost:3000** → tu dois voir le portfolio ! 🎉
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## STEP 7 — Déployer sur Vercel (3 min)
 
-## Learn More
+```bash
+# 1. Initialiser Git
+git init
+git add .
+git commit -m "feat: portfolio initial"
 
-To learn more about Next.js, take a look at the following resources:
+# 2. Créer un repo GitHub (sur github.com) puis :
+git remote add origin https://github.com/onsgaaya1/portfolio.git
+git push -u origin main
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+3. Va sur **vercel.com** → "New Project" → importe ton repo GitHub → Deploy 🚀
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Ton portfolio sera en ligne sur : `onsgaaya.vercel.app`
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Personnalisations rapides
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Changer l'email de contact
+Dans `app/contact/page.tsx`, ligne ~55 :
+```typescript
+window.open(`mailto:onsgaaya1@gmail.com?...`)
+```
+
+### Ajouter un lien CV
+Dans `app/about/page.tsx`, cherche le commentaire `⚠️ Add your CV link here` et décommente la ligne.
+
+### Changer les stats de la home
+Dans `app/page.tsx`, cherche `<p className="gradient-text font-display font-bold text-3xl">13</p>`
+
+---
+
+## 🆘 En cas de problème
+
+### Erreur "Module not found"
+```bash
+npm install
+```
+
+### Erreur "longpaths" sur Windows
+```bash
+git config --global core.longpaths true
+```
+
+### La photo ne s'affiche pas
+- Vérifie que le fichier s'appelle exactement `profile.jpg` (pas `profile.JPG` ou `profile.jpeg`)
+- Vérifie qu'il est dans le dossier `public/` à la racine du projet
