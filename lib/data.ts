@@ -55,10 +55,6 @@ export const projects: Project[] = [
         url: "https://www.youtube.com/embed/7N37spYpZTQ",
         label: { en: "Psychologist & Admin Space (Web)", fr: "Espace Psychologue & Admin (Web)" },
       },
-      {
-        url: "https://www.youtube.com/embed/djASkNYc_vs",
-        label: { en: "Moodi Pro — Psychologist App (Mobile)", fr: "Moodi Pro — App Psychologue (Mobile)" },
-      },
     ],
     highlight: "86% accuracy · DistilBERT",
     status: "completed",
@@ -271,6 +267,16 @@ export const projects: Project[] = [
     categories: ["Mobile", "AI/ML/DL"],
     github: "https://github.com/onsgaaya1/Moodi-Mobile-App",
     video: "https://www.youtube.com/embed/oFGvqbDWraE",
+    videos: [
+      {
+        url: "https://www.youtube.com/embed/oFGvqbDWraE",
+        label: { en: "User App (Mobile)", fr: "App Utilisateur (Mobile)" },
+      },
+      {
+        url: "https://www.youtube.com/embed/djASkNYc_vs",
+        label: { en: "Moodi Pro — Psychologist App (Mobile)", fr: "Moodi Pro — App Psychologue (Mobile)" },
+      },
+    ],
     status: "completed",
   },
   {
