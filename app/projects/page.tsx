@@ -45,20 +45,17 @@ export default function ProjectsPage() {
 
   const tr = t.projects;
 
+  // SINGLE-SELECT: clicking a category shows ONLY that one (clears tech too).
+  // Click the same active category again → clears (shows all).
   const toggleCat = (cat: Category) => {
-    setActiveCats(prev => {
-      const n = new Set(prev);
-      n.has(cat) ? n.delete(cat) : n.add(cat);
-      return n;
-    });
+    setActiveTechs(new Set());
+    setActiveCats(prev => (prev.has(cat) && prev.size === 1 ? new Set() : new Set<Category>([cat])));
   };
 
+  // SINGLE-SELECT: clicking a tech shows ONLY that one (clears category too).
   const toggleTech = (tech: string) => {
-    setActiveTechs(prev => {
-      const n = new Set(prev);
-      n.has(tech) ? n.delete(tech) : n.add(tech);
-      return n;
-    });
+    setActiveCats(new Set());
+    setActiveTechs(prev => (prev.has(tech) && prev.size === 1 ? new Set() : new Set<string>([tech])));
   };
 
   const clearFilters = () => { setActiveCats(new Set()); setActiveTechs(new Set()); };
@@ -75,7 +72,10 @@ export default function ProjectsPage() {
       <Navbar lang={lang} onToggleLang={() => setLang(lang === "en" ? "fr" : "en")} />
 
       <main className="pt-24" style={{ position: "relative", overflow: "hidden" }}>
-        <FlowerBg density="normal" />
+        {/* decorative background — never blocks clicks */}
+        <div style={{ position: "absolute", inset: 0, zIndex: 0, pointerEvents: "none" }}>
+          <FlowerBg density="normal" />
+        </div>
 
         {/* Hero — pointerEvents none so it never blocks clicks below */}
         <div style={{ position: "relative", overflow: "hidden", paddingBottom: "3rem", pointerEvents: "none" }}>
