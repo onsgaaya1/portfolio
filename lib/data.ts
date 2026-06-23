@@ -41,7 +41,7 @@ export const projects: Project[] = [
       fr: "Projet de fin d'études. Détection émotionnelle multilingue via DistilBERT fine-tuné (86% de précision), chatbot LLaMA via Groq API, dashboard Angular 20, app mobile React Native/Expo, backend ASP.NET Core 8, service FastAPI, PostgreSQL. Authentification JWT multi-rôle complète.",
     },
     techs: ["Angular", "ASP.NET Core", "React Native", "FastAPI", "DistilBERT", "PostgreSQL", "Groq"],
-    categories: ["AI/ML/DL", "Web", "Mobile"],
+    categories: ["AI/ML/DL", "Web"],
     github: "https://github.com/onsgaaya1/Moodi_Web_Apps",
     report: "/reports/moodi.pdf",
     ppt: "/ppt/moodi.pdf",
