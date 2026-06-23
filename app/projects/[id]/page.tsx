@@ -37,6 +37,16 @@ export default function ProjectDetailPage() {
 
   const hasDocs = project.report || project.ppt;
 
+  // Build the list of videos to show:
+  //  • if project.videos exists → show them all (each with its caption)
+  //  • else if project.video exists → show that single one
+  const videoList: { url: string; label: { en: string; fr: string } | null }[] =
+    project.videos && project.videos.length
+      ? project.videos
+      : project.video
+      ? [{ url: project.video, label: null }]
+      : [];
+
   return (
     <>
       <Navbar lang={lang} onToggleLang={() => setLang(lang === "en" ? "fr" : "en")} />
@@ -106,19 +116,34 @@ export default function ProjectDetailPage() {
             </div>
           </div>
 
-          {/* Video — only if present */}
-          {project.video && (
+          {/* Video(s) — one or many, each with its caption */}
+          {videoList.length > 0 && (
             <div className="glass-card animate-fade-up-delay-3" style={{ padding: "1.75rem", marginBottom: "1.5rem" }}>
-              <p style={{ fontSize: "0.68rem", fontWeight: 800, letterSpacing: "0.12em", textTransform: "uppercase", color: "#4ade8088", marginBottom: "0.9rem" }}>
-                🎬 {lang === "en" ? "Demo Video" : "Vidéo Démo"}
+              <p style={{ fontSize: "0.68rem", fontWeight: 800, letterSpacing: "0.12em", textTransform: "uppercase", color: "#4ade8088", marginBottom: "1rem" }}>
+                🎬 {videoList.length > 1
+                  ? (lang === "en" ? "Demo Videos" : "Vidéos Démo")
+                  : (lang === "en" ? "Demo Video" : "Vidéo Démo")}
               </p>
-              <div style={{ borderRadius: 14, overflow: "hidden", aspectRatio: "16/9", border: "1px solid rgba(34,197,94,0.2)" }}>
-                <iframe
-                  src={project.video}
-                  style={{ width: "100%", height: "100%", border: "none" }}
-                  allowFullScreen
-                  title={`${project.title} demo`}
-                />
+
+              <div style={{ display: "flex", flexDirection: "column", gap: "1.75rem" }}>
+                {videoList.map((v, i) => (
+                  <div key={v.url + i}>
+                    {v.label && (
+                      <p style={{ color: "#22c55e", fontSize: "0.92rem", fontWeight: 800, marginBottom: "0.6rem" }}>
+                        {i + 1}. {v.label[lang]}
+                      </p>
+                    )}
+                    <div style={{ borderRadius: 14, overflow: "hidden", aspectRatio: "16/9", border: "1px solid rgba(34,197,94,0.2)" }}>
+                      <iframe
+                        src={v.url}
+                        style={{ width: "100%", height: "100%", border: "none" }}
+                        allowFullScreen
+                        title={`${project.title} demo ${i + 1}`}
+                        allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      />
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
           )}

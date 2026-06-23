@@ -14,9 +14,15 @@ export type Project = {
   demo?: string;
   report?: string; // PDF path, e.g. /reports/moodi.pdf
   ppt?: string;     // PDF path (converted from pptx), e.g. /ppt/moodi.pdf
-  video?: string;  // YouTube embed URL or local path
+  video?: string;  // single YouTube embed URL (used for card badge + simple projects)
+  videos?: ProjectVideo[]; // multiple labelled videos (shown on the detail page)
   highlight?: string; // key stat / badge
   status: "completed" | "in-progress";
+};
+
+export type ProjectVideo = {
+  url: string;                       // YouTube embed URL
+  label: { en: string; fr: string }; // small caption shown under the player
 };
 
 export type Category = "AI/ML/DL" | "Web" | "Mobile" | "Game" | "Data";
@@ -40,6 +46,20 @@ export const projects: Project[] = [
     report: "/reports/moodi.pdf",
     ppt: "/ppt/moodi.pdf",
     video: "https://www.youtube.com/embed/AFN2Tr1aT84",
+    videos: [
+      {
+        url: "https://www.youtube.com/embed/AFN2Tr1aT84",
+        label: { en: "User Space (Web)", fr: "Espace Utilisateur (Web)" },
+      },
+      {
+        url: "https://www.youtube.com/embed/7N37spYpZTQ",
+        label: { en: "Psychologist & Admin Space (Web)", fr: "Espace Psychologue & Admin (Web)" },
+      },
+      {
+        url: "https://www.youtube.com/embed/djASkNYc_vs",
+        label: { en: "Moodi Pro — Psychologist App (Mobile)", fr: "Moodi Pro — App Psychologue (Mobile)" },
+      },
+    ],
     highlight: "86% accuracy · DistilBERT",
     status: "completed",
   },
