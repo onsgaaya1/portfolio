@@ -60,6 +60,36 @@ export const projects: Project[] = [
     status: "completed",
   },
   {
+    id: "moodi-mobile",
+    title: "Moodi Mobile App",
+    emoji: "💚",
+    shortDesc: {
+      en: "Moodi companion app — React Native/Expo for iOS & Android",
+      fr: "App mobile Moodi — React Native/Expo pour iOS & Android",
+    },
+    longDesc: {
+      en: "React Native/Expo mobile companion to the Moodi platform. Connects to the ASP.NET Core backend, supports emotion logging, chatbot access, and history visualization.",
+      fr: "Application mobile React Native/Expo complémentaire à la plateforme Moodi. Connexion au backend ASP.NET Core, journalisation émotionnelle, chatbot et visualisation de l'historique.",
+    },
+    techs: ["React Native", "Expo", "TypeScript"],
+    categories: ["Mobile", "AI/ML/DL"],
+    github: "https://github.com/onsgaaya1/Moodi-Mobile-App",
+    report: "/reports/moodi.pdf",
+    ppt: "/ppt/moodi.pdf",
+    video: "https://www.youtube.com/embed/oFGvqbDWraE",
+    videos: [
+      {
+        url: "https://www.youtube.com/embed/oFGvqbDWraE",
+        label: { en: "User App (Mobile)", fr: "App Utilisateur (Mobile)" },
+      },
+      {
+        url: "https://www.youtube.com/embed/djASkNYc_vs",
+        label: { en: "Moodi Pro — Psychologist App (Mobile)", fr: "Moodi Pro — App Psychologue (Mobile)" },
+      },
+    ],
+    status: "completed",
+  },
+  {
     id: "sentiment-yelp",
     title: "Sentiment Analysis — Yelp NLP",
     emoji: "🤖",
@@ -249,34 +279,6 @@ export const projects: Project[] = [
     techs: ["Kotlin", "Android"],
     categories: ["Mobile"],
     github: "https://github.com/onsgaaya1/Puffy",
-    status: "completed",
-  },
-  {
-    id: "moodi-mobile",
-    title: "Moodi Mobile App",
-    emoji: "💚",
-    shortDesc: {
-      en: "Moodi companion app — React Native/Expo for iOS & Android",
-      fr: "App mobile Moodi — React Native/Expo pour iOS & Android",
-    },
-    longDesc: {
-      en: "React Native/Expo mobile companion to the Moodi platform. Connects to the ASP.NET Core backend, supports emotion logging, chatbot access, and history visualization.",
-      fr: "Application mobile React Native/Expo complémentaire à la plateforme Moodi. Connexion au backend ASP.NET Core, journalisation émotionnelle, chatbot et visualisation de l'historique.",
-    },
-    techs: ["React Native", "Expo", "TypeScript"],
-    categories: ["Mobile", "AI/ML/DL"],
-    github: "https://github.com/onsgaaya1/Moodi-Mobile-App",
-    video: "https://www.youtube.com/embed/oFGvqbDWraE",
-    videos: [
-      {
-        url: "https://www.youtube.com/embed/oFGvqbDWraE",
-        label: { en: "User App (Mobile)", fr: "App Utilisateur (Mobile)" },
-      },
-      {
-        url: "https://www.youtube.com/embed/djASkNYc_vs",
-        label: { en: "Moodi Pro — Psychologist App (Mobile)", fr: "Moodi Pro — App Psychologue (Mobile)" },
-      },
-    ],
     status: "completed",
   },
   {
