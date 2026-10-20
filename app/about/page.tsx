@@ -3,20 +3,24 @@
 import { useState } from "react";
 import Image from "next/image";
 import Navbar from "@/components/Navbar";
+import GratitudeNote from "@/components/GratitudeNote";
+import VerseFrame from "@/components/VerseFrame";
+import CurrentProjects from "@/components/CurrentProjects";
 import Footer from "@/components/Footer";
-import FlowerBg from "@/components/FlowerBg";
-import { Lang, t } from "@/lib/data";
+import { Lang } from "@/lib/data";
 
 export default function AboutPage() {
   const [lang, setLang] = useState<Lang>("en");
 
-  const skillGroups = [
+  const skillGroups: { category: string; icon: string; skills: string[]; learning?: { en: string; fr: string }[] }[] = [
+    { category: "Languages", icon: "⌨️", skills: ["Python", "Java", "C#", "C / C++", "TypeScript", "Dart", "Kotlin", "PHP"] },
     { category: "Frontend", icon: "🖥️", skills: ["Angular 20", "React.js", "Next.js", "TypeScript", "TailwindCSS", "HTML/CSS/JS"] },
-    { category: "Backend", icon: "⚙️", skills: ["ASP.NET Core 8 (C#)", "Node.js / Express", "FastAPI (Python)", "Spring Boot", "PHP"] },
-    { category: "Mobile", icon: "📱", skills: ["React Native / Expo", "Kotlin / Android"] },
-    { category: "AI / ML / DL", icon: "🤖", skills: ["DistilBERT (HuggingFace)", "PyTorch", "Scikit-Learn", "BiLSTM", "NLP", "Groq LLaMA API"] },
-    { category: "Databases", icon: "🗄️", skills: ["PostgreSQL", "MongoDB", "SQL Server", "MySQL"] },
-    { category: "Tools & DevOps", icon: "🛠️", skills: ["Git / GitHub", "Docker", "Figma", "Jupyter Notebook", "Vercel", "Unity / C#"] },
+    { category: "Backend", icon: "⚙️", skills: ["ASP.NET Core 8 (C#)", "Java / Spring Boot", "Node.js / Express", "FastAPI (Python)", "PHP"] },
+    { category: "Mobile", icon: "📱", skills: ["Flutter / Dart", "React Native / Expo", "Kotlin / Android", "iOS / Swift"] },
+    { category: "AI / ML / DL", icon: "🤖", skills: ["DistilBERT (HuggingFace)", "Sentence Transformers", "FAISS", "PyTorch", "Scikit-Learn", "BiLSTM", "NLP", "Groq LLaMA API"], learning: [{ en: "Generative AI", fr: "IA générative" }] },
+    { category: "Data & BI", icon: "🗄️", skills: ["PostgreSQL", "MongoDB", "SQL Server", "MySQL", "Power BI / DAX"] },
+    { category: "Security & Testing", icon: "🛡️", skills: ["JWT / BCrypt", "OWASP Top 10", "JUnit / PyTest"] },
+    { category: "Tools & Practices", icon: "🛠️", skills: ["Git / GitHub", "Figma", "UML", "Scrum / Agile", "Jupyter Notebook", "Vercel", "Unity / C#"] },
   ];
 
   const certs = [
@@ -25,28 +29,28 @@ export default function AboutPage() {
     { name: "Certiport / Pearson VUE — Entrepreneurship & Small Business", year: "2022", icon: "💼" },
   ];
 
-  // ✅ CORRECTED education — Bac+7 total:
-  // Business Admin 2019–2022 (3 ans) → Bac+3
-  // ICT Préparatoire 2022–2024 (2 ans) → Bac+5
-  // Cycle Ingénieur 2024–2027 (3 ans) → Bac+7 · 2nd year validated, entering 3rd & FINAL year
+  // Parcours : huit années d'études, trois diplômes.
+  // Business Admin 2019–2022 (3 ans) · ICT Préparatoire 2022–2024 (2 ans)
+  // Cycle Ingénieur 2024–2027 (3 ans) — 3ème et dernière année en cours depuis sept. 2026.
+  // Pas de "Bac+N" : le diplôme d'ingénieur est Bac+5, les huit années sont du temps d'étude.
   const education = [
     {
       num: 3,
       degree: lang === "en"
-        ? "Software Engineering — Engineering Cycle (Bac+7)"
-        : "Génie Logiciel — Cycle Ingénieur (Bac+7)",
+        ? "Software Engineering — Engineering Cycle"
+        : "Génie Logiciel — Cycle Ingénieur",
       school: "EPI Digital School, Sousse",
       years: "2024 – 2027",
       note: lang === "en"
-        ? "2nd year validated · Entering final (3rd) year · Expected graduation 2027"
-        : "2ème année validée · Entrée en 3ème et dernière année · Diplôme prévu 2027",
+        ? "3rd and final year in progress · Expected graduation 2027"
+        : "3ème et dernière année en cours · Diplôme prévu 2027",
       badge: lang === "en" ? "🎓 Final year" : "🎓 Dernière année",
     },
     {
       num: 2,
       degree: lang === "en"
-        ? "ICT Preparatory Cycle (Bac+5)"
-        : "Cycle Préparatoire ICT (Bac+5)",
+        ? "ICT Preparatory Cycle"
+        : "Cycle Préparatoire ICT",
       school: "EPI Digital School, Sousse",
       years: "2022 – 2024",
       note: lang === "en" ? "✓ ICT Preparatory Graduate" : "✓ Diplômée Préparatoire ICT",
@@ -55,11 +59,11 @@ export default function AboutPage() {
     {
       num: 1,
       degree: lang === "en"
-        ? "Business Administration & Marketing (Bac+3)"
-        : "Business Administration & Marketing (Bac+3)",
+        ? "Business Administration & Marketing"
+        : "Business Administration & Marketing",
       school: "EPI Digital School, Sousse",
       years: "2019 – 2022",
-      note: lang === "en" ? "🏆 Class of 2022 honors graduate" : "🏆 Majeure de promotion 2022",
+      note: lang === "en" ? "🏆 Top of the class, 2020 and 2021" : "🏆 Majeure de promotion 2020 et 2021",
       badge: "✅",
     },
   ];
@@ -97,8 +101,8 @@ export default function AboutPage() {
   const quickFacts = [
     { label: lang === "en" ? "Location" : "Localisation", value: "Sousse, Tunisia 🇹🇳" },
     { label: lang === "en" ? "School" : "École", value: "EPI Digital School" },
-    { label: lang === "en" ? "Degree path" : "Parcours", value: "Bac+7 (Business → ICT → Engineering)" },
-    { label: lang === "en" ? "Current year" : "Année actuelle", value: lang === "en" ? "Final year — Engineering cycle (5th at EPI)" : "Dernière année — Cycle ingénieur" },
+    { label: lang === "en" ? "Studies" : "Études", value: lang === "en" ? "8 years — Business → ICT → Engineering" : "8 ans — Business → ICT → Ingénierie" },
+    { label: lang === "en" ? "Current year" : "Année actuelle", value: lang === "en" ? "5th year — Engineering cycle, final year" : "5ème année — Cycle ingénieur, dernière année" },
     { label: lang === "en" ? "Graduation" : "Diplôme prévu", value: "2027" },
     { label: "Email", value: "onsgaaya1@gmail.com" },
     { label: lang === "en" ? "Phone" : "Téléphone", value: "+216 96 997 130" },
@@ -107,32 +111,25 @@ export default function AboutPage() {
 
   const verses = [
     {
-      ar: "﴿وَمَا أُوتِيتُمْ مِنَ الْعِلْمِ إِلَّا قَلِيلًا﴾",
-      ref: "AL QURAN 17:85",
-      phonetic: "Wa mā ūtītum mina-l-'ilmi illā qalīlā",
-      en: "And of knowledge, you have been given only a little.",
-      fr: "Et de la science, il ne vous a été donné que peu.",
+      ar: "﴿وَأَحْسِنُوا ۛ إِنَّ اللَّهَ يُحِبُّ الْمُحْسِنِينَ﴾",
+      refNum: "2:195", surah: { en: "Al-Baqara", fr: "Al-Baqara" }, highlight: "الْمُحْسِنِينَ",
+      phonetic: "Wa aḥsinū, inna-llāha yuḥibbu-l-muḥsinīn",
+      en: "And do good. Indeed, Allah loves the doers of good.",
+      fr: "Et faites le bien. Certes, Allah aime les bienfaisants.",
     },
     {
-      ar: "﴿إِنَّمَا يَخْشَى اللَّهَ مِنْ عِبَادِهِ الْعُلَمَاءُ﴾",
-      ref: "AL QURAN 35:28",
-      phonetic: "Innamā yakhsha-llāha min 'ibādihi-l-'ulamā'",
-      en: "Indeed, it is only those who have knowledge among His servants who fear Allah.",
-      fr: "Parmi Ses serviteurs, seuls les savants craignent Allah.",
+      ar: "﴿وَأَمَّا مَا يَنفَعُ النَّاسَ فَيَمْكُثُ فِي الْأَرْضِ﴾",
+      refNum: "13:17", surah: { en: "Ar-Raʿd", fr: "Ar-Raʿd" }, highlight: "يَنفَعُ النَّاسَ",
+      phonetic: "Wa ammā mā yanfaʿu-n-nāsa fa-yamkuthu fi-l-arḍ",
+      en: "But what benefits the people remains on the earth.",
+      fr: "Mais ce qui est utile aux hommes demeure sur la terre.",
     },
     {
-      ar: "﴿رَّبِّ زِدْنِي عِلْمًا﴾",
-      ref: "AL QURAN 20:114",
-      phonetic: "Rabbi zidnī 'ilmā",
-      en: "My Lord, increase me in knowledge.",
-      fr: "Mon Seigneur, accroît mes connaissances.",
-    },
-    {
-      ar: "﴿يَرْفَعِ اللَّهُ الَّذِينَ آمَنُوا مِنكُمْ وَالَّذِينَ أُوتُوا الْعِلْمَ دَرَجَاتٍ﴾",
-      ref: "AL QURAN 58:11",
-      phonetic: "Yarfa'i-llāhu-lladhīna āmanū minkum wa-lladhīna ūtu-l-'ilma darajāt",
-      en: "Allah will raise those who have believed among you and those who were given knowledge, by degrees.",
-      fr: "Allah élèvera en degrés ceux d'entre vous qui auront cru et ceux qui auront reçu le savoir.",
+      ar: "﴿وَقُل رَّبِّ زِدْنِي عِلْمًا﴾",
+      refNum: "20:114", surah: { en: "Ṭā-Hā", fr: "Tâ-Hâ" }, highlight: "عِلْمًا",
+      phonetic: "Wa qul rabbi zidnī ʿilmā",
+      en: "And say: My Lord, increase me in knowledge.",
+      fr: "Et dis : Ô mon Seigneur, accrois mes connaissances.",
     },
   ];
 
@@ -141,12 +138,10 @@ export default function AboutPage() {
       <Navbar lang={lang} onToggleLang={() => setLang(lang === "en" ? "fr" : "en")} />
 
       <main className="pt-24" style={{ position: "relative", overflow: "hidden" }}>
-        <FlowerBg density="normal" />
         <div className="section" style={{ display: "flex", flexDirection: "column", gap: "5rem", position: "relative", zIndex: 1 }}>
 
           {/* ─── HERO / INTRO ─── */}
           <div style={{ position: "relative" }} className="animate-fade-up">
-            <FlowerBg density="lush" />
             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "3rem", alignItems: "start", position: "relative", zIndex: 1 }}
               className="grid-cols-1 md:grid-cols-2">
 
@@ -156,7 +151,7 @@ export default function AboutPage() {
                 <div style={{ marginBottom: "1.5rem", display: "flex", alignItems: "center", gap: "1.25rem" }}>
                   <div className="glow-ring" style={{ width: 88, height: 88, borderRadius: "50%", overflow: "hidden", border: "3px solid #22c55e", flexShrink: 0 }}>
                     <Image
-                      src="/profile.jpg"
+                      src="/profile-ons.jpg"
                       alt="Ons Gaaya"
                       width={88} height={88}
                       style={{ objectFit: "cover", width: "100%", height: "100%" }}
@@ -168,65 +163,23 @@ export default function AboutPage() {
                     </h1>
                     <p style={{ color: "#22c55e", fontWeight: 700, fontSize: "0.9rem" }}>
                       {lang === "en"
-                        ? "Full-Stack · AI · Mobile Developer"
-                        : "Développeuse Full-Stack · IA · Mobile"}
+                        ? "Software & AI Engineer — Tech & Business profile"
+                        : "Ingénieure logicielle & IA — Profil tech & business"}
                     </p>
                   </div>
                 </div>
 
                 <p style={{ color: "#86efac", lineHeight: 1.75, fontSize: "0.97rem", marginBottom: "1rem" }}>
                   {lang === "en"
-                    ? "Final-year Software Engineering student at EPI Digital School, Sousse, with a unique Bac+7 path — Business Administration → ICT Preparatory → Software Engineering — which gave me both technical depth and a rare business perspective."
-                    : "Étudiante en dernière année Génie Logiciel à l'EPI Digital School Sousse, avec un parcours unique Bac+7 — Business Administration → ICT Préparatoire → Génie Logiciel — qui m'a donné une profondeur technique et une perspective business rare."}
+                    ? "Final-year Software Engineering student at EPI Digital School, Sousse — after eight years of study across three fields: Business Administration, ICT Preparatory and Engineering. A path that gave me technical depth and a rare business perspective."
+                    : "Étudiante en 5ème année Génie Logiciel à l'EPI Digital School Sousse — après huit années d'études supérieures en trois domaines : Business Administration, Cycle Préparatoire ICT et Ingénierie. Un parcours qui m'a donné une profondeur technique et une rare perspective business."}
                 </p>
 
-                {/* Quran verses — sacred styling with gold flower corners */}
-                <div style={{ display: "flex", flexDirection: "column", gap: "1rem", marginBottom: "1.25rem" }}>
-                  {verses.map((verse) => (
-                    <div key={verse.ref} style={{
-                      position: "relative",
-                      background: "linear-gradient(135deg, rgba(212,175,55,0.06), rgba(34,197,94,0.06))",
-                      border: "1px solid rgba(212,175,55,0.3)",
-                      borderRadius: 16, padding: "1.5rem 1.5rem 1.25rem",
-                      overflow: "hidden",
-                    }}>
-                      {/* Corner flowers */}
-                      <svg width="34" height="34" viewBox="0 0 100 100" style={{ position: "absolute", top: 6, left: 6, opacity: 0.55 }}>
-                        {[0, 72, 144, 216, 288].map(d => (
-                          <ellipse key={d} cx="50" cy="22" rx="10" ry="20" fill="#d4af37" opacity="0.8" transform={`rotate(${d} 50 50)`} />
-                        ))}
-                        <circle cx="50" cy="50" r="11" fill="#f5f0dc" />
-                      </svg>
-                      <svg width="34" height="34" viewBox="0 0 100 100" style={{ position: "absolute", top: 6, right: 6, opacity: 0.55, transform: "scaleX(-1)" }}>
-                        {[0, 72, 144, 216, 288].map(d => (
-                          <ellipse key={d} cx="50" cy="22" rx="10" ry="20" fill="#22c55e" opacity="0.8" transform={`rotate(${d} 50 50)`} />
-                        ))}
-                        <circle cx="50" cy="50" r="11" fill="#f5f0dc" />
-                      </svg>
-                      <svg width="26" height="26" viewBox="0 0 100 100" style={{ position: "absolute", bottom: 6, left: 6, opacity: 0.4 }}>
-                        {[0, 72, 144, 216, 288].map(d => (
-                          <ellipse key={d} cx="50" cy="24" rx="10" ry="18" fill="#22c55e" opacity="0.7" transform={`rotate(${d} 50 50)`} />
-                        ))}
-                        <circle cx="50" cy="50" r="10" fill="#d4af37" />
-                      </svg>
-                      <svg width="26" height="26" viewBox="0 0 100 100" style={{ position: "absolute", bottom: 6, right: 6, opacity: 0.4, transform: "scaleX(-1)" }}>
-                        {[0, 72, 144, 216, 288].map(d => (
-                          <ellipse key={d} cx="50" cy="24" rx="10" ry="18" fill="#d4af37" opacity="0.7" transform={`rotate(${d} 50 50)`} />
-                        ))}
-                        <circle cx="50" cy="50" r="10" fill="#22c55e" />
-                      </svg>
-
-                      <p style={{ position: "relative", zIndex: 1, fontSize: "1.08rem", color: "#d4af37", fontWeight: 700, textAlign: "center", marginBottom: "0.5rem", lineHeight: 1.8, direction: "rtl" }}>
-                        {verse.ar}
-                      </p>
-                      <p style={{ position: "relative", zIndex: 1, fontSize: "0.78rem", color: "#4ade80", textAlign: "center", fontStyle: "italic", marginBottom: "0.5rem", letterSpacing: "0.02em" }}>
-                        {verse.phonetic}
-                      </p>
-                      <p style={{ position: "relative", zIndex: 1, fontSize: "0.83rem", color: "#f5f0dc", textAlign: "center", marginBottom: "0.25rem", lineHeight: 1.5 }}>
-                        {lang === "en" ? `"${verse.en}"` : `« ${verse.fr} »`}
-                      </p>
-                      <p style={{ position: "relative", zIndex: 1, fontSize: "0.68rem", color: "#d4af3799", textAlign: "center", marginTop: "0.5rem", letterSpacing: "0.08em" }}>{verse.ref}</p>
-                    </div>
+                {/* Quran verses — illuminated frame */}
+                <div style={{ display: "flex", flexDirection: "column", gap: "1.75rem", margin: "1.5rem 0.5rem 1.75rem" }}>
+                  {verses.map(v => (
+                    <VerseFrame key={v.refNum} arabic={v.ar} translit={v.phonetic} en={v.en} fr={v.fr}
+                      surah={v.surah} refNum={v.refNum} highlight={v.highlight} lang={lang} />
                   ))}
                 </div>
 
@@ -254,13 +207,21 @@ export default function AboutPage() {
             </div>
           </div>
 
+          {/* ─── CURRENT WORK ─── */}
+          <div style={{ maxWidth: 760, margin: "0 auto", width: "100%" }}>
+            <CurrentProjects lang={lang} showLearning />
+          </div>
+
+          {/* ─── IN MY OWN WORDS (LinkedIn About) ─── */}
+          <GratitudeNote lang={lang} />
+
           {/* ─── SKILLS ─── */}
           <div className="animate-fade-up-delay-1">
             <div className="accent-bar" />
             <h2 style={{ fontWeight: 900, fontSize: "1.8rem", color: "#ecfdf5", marginBottom: "2rem" }}>
               {lang === "en" ? "Skills" : "Compétences"}
             </h2>
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))", gap: "1rem" }}>
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(240px, 1fr))", gap: "1rem" }}>
               {skillGroups.map(group => (
                 <div key={group.category} className="glass-card" style={{ padding: "1.25rem" }}>
                   <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", marginBottom: "0.75rem" }}>
@@ -271,6 +232,11 @@ export default function AboutPage() {
                   </div>
                   <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
                     {group.skills.map(s => <span key={s} className="tech-badge">{s}</span>)}
+                    {group.learning?.map(s => (
+                      <span key={s.en} className="tech-badge" style={{ borderStyle: "dashed", color: "#f1d58a", borderColor: "rgba(212,168,83,0.55)" }}>
+                        🌱 {s[lang]} · {lang === "en" ? "learning" : "en cours"}
+                      </span>
+                    ))}
                   </div>
                 </div>
               ))}
@@ -284,7 +250,7 @@ export default function AboutPage() {
               {lang === "en" ? "Education" : "Formation"}
             </h2>
 
-            {/* Bac+7 banner */}
+            {/* Bandeau parcours */}
             <div style={{
               background: "rgba(34,197,94,0.06)", border: "1px solid rgba(34,197,94,0.25)",
               borderRadius: 14, padding: "1rem 1.5rem", marginBottom: "1.5rem",
@@ -293,7 +259,7 @@ export default function AboutPage() {
               <span style={{ fontSize: "2rem" }}>🎓</span>
               <div>
                 <p style={{ fontWeight: 800, color: "#22c55e", fontSize: "1rem" }}>
-                  {lang === "en" ? "Bac+7 path — 3 degrees at EPI Digital School" : "Parcours Bac+7 — 3 diplômes à l'EPI Digital School"}
+                  {lang === "en" ? "Eight years of study — 3 degrees at EPI Digital School" : "Huit années d'études — 3 diplômes à l'EPI Digital School"}
                 </p>
                 <p style={{ color: "#86efac", fontSize: "0.82rem" }}>
                   {lang === "en"

@@ -4,8 +4,8 @@ import { useState } from "react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import Navbar from "@/components/Navbar";
+import StatusBadge from "@/components/StatusBadge";
 import Footer from "@/components/Footer";
-import FlowerBg from "@/components/FlowerBg";
 import { Lang, t, projects } from "@/lib/data";
 
 export default function ProjectDetailPage() {
@@ -52,8 +52,6 @@ export default function ProjectDetailPage() {
       <Navbar lang={lang} onToggleLang={() => setLang(lang === "en" ? "fr" : "en")} />
 
       <main className="pt-24" style={{ position: "relative", overflow: "hidden", paddingBottom: "5rem" }}>
-        <FlowerBg density="normal" />
-
         <div className="section" style={{ position: "relative", zIndex: 1, maxWidth: 820 }}>
 
           {/* Back link */}
@@ -79,14 +77,7 @@ export default function ProjectDetailPage() {
             <div style={{ display: "flex", alignItems: "flex-start", gap: "1rem", flexWrap: "wrap", position: "relative", zIndex: 1 }}>
               <span style={{ fontSize: "3rem", lineHeight: 1 }}>{project.emoji}</span>
               <div style={{ flex: 1, minWidth: 200 }}>
-                <span style={{
-                  fontSize: "0.7rem", fontWeight: 800, padding: "3px 12px", borderRadius: 999,
-                  background: "rgba(34,197,94,0.12)", color: "#22c55e",
-                  border: "1px solid rgba(34,197,94,0.3)", letterSpacing: "0.06em",
-                  display: "inline-block", marginBottom: "0.6rem",
-                }}>
-                  ✓ {tr.status_done[lang]}
-                </span>
+                <div style={{ marginBottom: "0.6rem" }}><StatusBadge status={project.status} lang={lang} /></div>
                 <h1 style={{ fontWeight: 900, fontSize: "1.9rem", color: "#ecfdf5", lineHeight: 1.2 }}>
                   {project.title}
                 </h1>
@@ -218,7 +209,7 @@ export default function ProjectDetailPage() {
               {preview && (
                 <div style={{
                   marginTop: "1.25rem", borderRadius: 14, overflow: "hidden",
-                  border: "1px solid rgba(34,197,94,0.3)", height: 560, background: "#0b2e17",
+                  border: "1px solid rgba(34,197,94,0.3)", height: 560, background: "#08303c",
                 }}>
                   <iframe
                     src={`${preview === "report" ? project.report : project.ppt}#view=FitH`}

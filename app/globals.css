@@ -6,8 +6,8 @@
 
 :root {
   --ej-bg:          #061a0d;
-  --ej-surface:     #0b2e17;
-  --ej-surface2:    #0e3a1e;
+  --ej-surface:     #08303c;
+  --ej-surface2:    #0a3b46;
   --ej-border:      #1a5c2f;
   --ej-border-soft: rgba(26, 92, 47, 0.4);
   --ej-accent:      #10843f;
@@ -20,8 +20,8 @@
   --ej-pink:        #f472b6;
 
   /* Glass */
-  --glass-bg:       rgba(11, 46, 23, 0.55);
-  --glass-border:   rgba(34, 197, 94, 0.18);
+  --glass-bg:       rgba(8, 44, 58, 0.5);
+  --glass-border:   rgba(110, 215, 200, 0.2);
   --glass-blur:     blur(16px);
 }
 
@@ -48,36 +48,6 @@ body {
 /* ============================================
    FLOWER DECORATIONS — SVG patterns
    ============================================ */
-
-/* Flower petal shape */
-.flower {
-  position: absolute;
-  pointer-events: none;
-  opacity: 0.12;
-  animation: floatFlower 8s ease-in-out infinite;
-}
-.flower-sm { width: 60px; height: 60px; }
-.flower-md { width: 100px; height: 100px; }
-.flower-lg { width: 160px; height: 160px; }
-
-@keyframes floatFlower {
-  0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0.10; }
-  50%       { transform: translateY(-14px) rotate(15deg); opacity: 0.18; }
-}
-@keyframes floatFlower2 {
-  0%, 100% { transform: translateY(0) rotate(0deg) scale(1); opacity: 0.08; }
-  50%       { transform: translateY(12px) rotate(-12deg) scale(1.05); opacity: 0.16; }
-}
-@keyframes floatFlower3 {
-  0%, 100% { transform: translateY(-6px) rotate(5deg); opacity: 0.07; }
-  50%       { transform: translateY(8px) rotate(-8deg); opacity: 0.14; }
-}
-
-.flower-delay-1 { animation-delay: -2s; }
-.flower-delay-2 { animation-delay: -4s; animation-name: floatFlower2; }
-.flower-delay-3 { animation-delay: -6s; animation-name: floatFlower3; }
-.flower-delay-4 { animation-delay: -1s; }
-.flower-delay-5 { animation-delay: -3.5s; animation-name: floatFlower2; }
 
 /* Divider with flower */
 .flower-divider {
@@ -150,7 +120,7 @@ body {
    NAV GLASS
    ============================================ */
 .nav-glass {
-  background: rgba(6, 26, 13, 0.8);
+  background: linear-gradient(180deg, rgba(4, 32, 58, 0.72), rgba(5, 38, 58, 0.42));
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border-bottom: 1px solid var(--glass-border);
@@ -202,7 +172,7 @@ body {
    MODAL
    ============================================ */
 .modal-backdrop {
-  background: rgba(6, 26, 13, 0.88);
+  background: rgba(4, 28, 46, 0.88);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
 }
@@ -261,7 +231,7 @@ body {
    ============================================ */
 .input-field {
   width: 100%;
-  background: rgba(11, 46, 23, 0.7);
+  background: rgba(8, 44, 58, 0.6);
   border: 1px solid var(--ej-border-soft);
   border-radius: 10px;
   padding: 13px 16px;
@@ -305,7 +275,7 @@ body {
    MEDIA PLACEHOLDER
    ============================================ */
 .media-placeholder {
-  background: rgba(11, 46, 23, 0.5);
+  background: rgba(8, 44, 58, 0.45);
   border: 1px dashed var(--ej-border);
   border-radius: 12px;
   padding: 1.5rem;
@@ -326,4 +296,178 @@ body {
   background: linear-gradient(90deg, var(--ej-accent), var(--ej-glow));
   border-radius: 2px;
   margin-bottom: 1rem;
+}
+
+/* ============================================================
+   StarryGarden — fond animé « Jardin bleu étoilé » (version D)
+   À coller à la fin de app/globals.css
+   ============================================================ */
+
+/* Le ciel : bleu nuit en haut, ta terre verte en bas.
+   À appliquer sur <body> (ou sur le conteneur de page). */
+.sg-sky {
+  background: linear-gradient(
+    170deg,
+    #04203a 0%,
+    #052642 24%,
+    #06243a 52%,
+    #05201c 82%,
+    #03140c 100%
+  );
+  background-attachment: fixed;
+}
+
+/* La couche des motifs : fixée derrière tout le contenu.
+   Fixed = elle ne bouge pas au scroll, donc un seul écran de motifs
+   suffit quelle que soit la longueur de la page. */
+.sg-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.sg-m {
+  position: absolute;
+  pointer-events: none;
+  will-change: transform;
+}
+
+.sg-inner {
+  display: block;
+  width: 100%;
+  height: 100%;
+  will-change: transform, opacity;
+}
+
+.sg-inner svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.sg-orb {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  will-change: transform, opacity;
+}
+
+/* ------------------------------------------------- les animations */
+
+@keyframes sg-bob {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-26px); }
+}
+
+@keyframes sg-bobx {
+  0%, 100% { transform: translate(0, 0); }
+  50%      { transform: translate(19px, -20px); }
+}
+
+@keyframes sg-bobz {
+  0%, 100% { transform: translate(0, 0); }
+  50%      { transform: translate(-17px, -15px); }
+}
+
+/* rotation des fleurs */
+@keyframes sg-spin  { to { transform: rotate(360deg); } }
+@keyframes sg-spinr { to { transform: rotate(-360deg); } }
+
+/* les diamants basculent sur leur axe : c'est ça qui fait la facette */
+@keyframes sg-facet {
+  0%, 100% { transform: rotateY(0deg) rotate(0deg); }
+  50%      { transform: rotateY(180deg) rotate(12deg); }
+}
+
+/* l'éclat qui monte et descend */
+@keyframes sg-shine {
+  0%, 100% { opacity: .4; }
+  50%      { opacity: 1; }
+}
+
+/* le scintillement des étoiles */
+@keyframes sg-twinkle {
+  0%, 100% { opacity: .1; transform: scale(.35) rotate(0deg); }
+  50%      { opacity: 1;  transform: scale(1.35) rotate(60deg); }
+}
+
+/* la respiration des halos */
+@keyframes sg-haze {
+  0%, 100% { opacity: .5; transform: scale(.95); }
+  50%      { opacity: 1;  transform: scale(1.2); }
+}
+
+/* ------------------------------------------------- téléphone */
+/* Moins de motifs et des halos plus discrets : la page reste fluide
+   et le texte reste lisible sur petit écran. */
+@media (max-width: 720px) {
+  .sg-sm { display: none; }
+  .sg-orb { opacity: .55; }
+}
+
+/* ------------------------------------------------- accessibilité */
+/* Certaines personnes règlent leur système pour supprimer les animations
+   (migraines, troubles vestibulaires). On respecte ce réglage :
+   le décor reste visible, mais immobile. */
+@media (prefers-reduced-motion: reduce) {
+  .sg-m,
+  .sg-inner,
+  .sg-orb {
+    animation: none !important;
+  }
+}
+
+/* ============================================
+   HERO ACCUEIL — photo G2 + orbites, verset enluminé
+   ============================================ */
+.home-hero { display: grid; grid-template-columns: auto 1fr; gap: .5rem 1.5rem; align-items: center; }
+.home-cta { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1.1rem; }
+
+.po { position: relative; width: 290px; height: 290px; margin: 44px 44px 44px 52px; flex-shrink: 0; }
+.po-disc {
+  position: absolute; inset: 0; border-radius: 50%; overflow: hidden;
+  border: 3px solid #22c55e; background: #0b2e3a;
+  box-shadow: 0 0 44px rgba(34,197,94,.4), 0 0 90px rgba(91,168,255,.22);
+}
+.po-ring { position: absolute; border-radius: 50%; pointer-events: none; }
+.po-ring.a { inset: -8%;  border: 1px dashed rgba(168,212,255,.38); animation: sg-spin 34s linear infinite; }
+.po-ring.b { inset: -15%; border: 1px solid rgba(34,197,94,.22);   animation: sg-spinr 52s linear infinite; }
+.po-dia { position: absolute; z-index: 3; filter: drop-shadow(0 0 10px rgba(120,185,255,.85)); animation: po-float 6s ease-in-out infinite; }
+.po-spark { position: absolute; z-index: 3; color: #eaf5ff; filter: drop-shadow(0 0 6px #fff); animation: po-twinkle 3.8s ease-in-out infinite; }
+@keyframes po-float   { 0%,100% { transform: translateY(0) rotate(var(--r,0deg)); } 50% { transform: translateY(-9px) rotate(var(--r,0deg)); } }
+@keyframes po-twinkle { 0%,100% { opacity: .3; transform: scale(.6); } 50% { opacity: 1; transform: scale(1.15); } }
+
+/* Verset enluminé */
+.vf {
+  position: relative; text-align: center; padding: 1.15rem 1.8rem 1rem; border-radius: 18px;
+  border: 1px solid rgba(212,168,83,.55); outline: 1px solid rgba(212,168,83,.22); outline-offset: 6px;
+  background: linear-gradient(160deg, rgba(212,168,83,.1), rgba(8,44,58,.35) 60%);
+  box-shadow: 0 0 50px rgba(212,168,83,.12);
+}
+.vf-fl { position: absolute; width: 30px; height: 30px; color: #d4a853; animation: sg-spin 40s linear infinite; }
+.vf-fl.a { top: -14px; left: -14px; }
+.vf-fl.b { top: -14px; right: -14px; color: #22c55e; animation-name: sg-spinr; }
+.vf-fl.c { bottom: -14px; left: -14px; color: #22c55e; animation-name: sg-spinr; }
+.vf-fl.d { bottom: -14px; right: -14px; }
+.vf-ref { font-size: .62rem; font-weight: 800; letter-spacing: .18em; text-transform: uppercase; color: #d4a853; }
+.vf-pill { display: inline-block; margin-top: .9rem; border: 1px solid rgba(212,168,83,.45); border-radius: 999px; padding: 3px 14px; }
+.vf-ar {
+  font-family: var(--font-arabic), "Scheherazade New", serif; color: #f5f0dc; font-weight: 700;
+  font-size: clamp(1.35rem, 3.2vw, 1.85rem); line-height: 1.9; margin: .25rem 0 .1rem;
+}
+.vf-ar b { color: #f1d58a; font-weight: 700; }
+.vf-tl { color: #4ade80; font-size: .76rem; font-style: italic; margin-bottom: .35rem; }
+.vf-tr { color: #86efac; font-size: .84rem; line-height: 1.5; font-style: italic; }
+
+@media (max-width: 1100px) { .po { width: 260px; height: 260px; margin: 40px 36px; } }
+@media (max-width: 860px) {
+  .home-hero { grid-template-columns: 1fr; justify-items: center; text-align: center; }
+  .home-cta { justify-content: center; }
+  .po { width: 250px; height: 250px; margin: 40px 34px; }
+}
+@media (max-width: 420px) { .po { width: 210px; height: 210px; margin: 36px 28px; } .vf { padding: 1.8rem 1.1rem 1.5rem; } }
+@media (prefers-reduced-motion: reduce) {
+  .po-ring, .po-dia, .po-spark, .vf-fl { animation: none !important; }
 }

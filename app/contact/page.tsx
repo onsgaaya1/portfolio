@@ -3,7 +3,6 @@
 import { useState } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import FlowerBg from "@/components/FlowerBg";
 import { Lang, t } from "@/lib/data";
 
 export default function ContactPage() {
@@ -43,8 +42,6 @@ export default function ContactPage() {
       <Navbar lang={lang} onToggleLang={() => setLang(lang === "en" ? "fr" : "en")} />
 
       <main className="pt-24" style={{ position: "relative", overflow: "hidden" }}>
-        <FlowerBg density="lush" />
-
         <div className="section" style={{ position: "relative", zIndex: 1 }}>
           {/* Header */}
           <div className="animate-fade-up" style={{ marginBottom: "3rem" }}>

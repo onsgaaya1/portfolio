@@ -59,13 +59,25 @@ export default function Navbar({ lang, onToggleLang }: NavbarProps) {
 
         {/* Right side */}
         <div style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
-          <button onClick={onToggleLang} style={{
-            background: "rgba(34,197,94,0.1)", border: "1px solid rgba(34,197,94,0.25)",
-            color: "#86efac", borderRadius: 8, padding: "5px 14px", fontSize: "0.8rem",
-            fontWeight: 700, cursor: "pointer", letterSpacing: "0.05em",
+          <div role="group" aria-label="Language / Langue" style={{
+            display: "flex", alignItems: "center", gap: 2, padding: 3, borderRadius: 999,
+            background: "rgba(34,197,94,0.1)", border: "1px solid rgba(110,215,200,0.3)",
           }}>
-            {lang === "en" ? "FR" : "EN"}
-          </button>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#86efac" strokeWidth="2" style={{ margin: "0 4px 0 7px" }} aria-hidden="true">
+              <circle cx="12" cy="12" r="9" /><path d="M3 12h18M12 3c2.8 3 2.8 15 0 18M12 3c-2.8 3-2.8 15 0 18" />
+            </svg>
+            {(["en", "fr"] as const).map(l => (
+              <button key={l} onClick={() => { if (lang !== l) onToggleLang(); }} aria-pressed={lang === l}
+                title={l === "en" ? "English" : "Français"} style={{
+                  border: "none", cursor: "pointer", borderRadius: 999, padding: "4px 11px",
+                  fontSize: "0.76rem", fontWeight: 800, letterSpacing: "0.06em",
+                  background: lang === l ? "#22c55e" : "transparent",
+                  color: lang === l ? "#04203a" : "#86efac",
+                }}>
+                {l.toUpperCase()}
+              </button>
+            ))}
+          </div>
 
           {/* Mobile hamburger */}
           <button
@@ -84,7 +96,7 @@ export default function Navbar({ lang, onToggleLang }: NavbarProps) {
 
       {/* Mobile menu */}
       {menuOpen && (
-        <div style={{ borderTop: "1px solid rgba(34,197,94,0.15)", padding: "1rem 1.5rem", background: "rgba(6,26,13,0.97)" }}>
+        <div style={{ borderTop: "1px solid rgba(34,197,94,0.15)", padding: "1rem 1.5rem", background: "rgba(4,28,46,0.95)" }}>
           {links.map(l => (
             <Link key={l.href} href={l.href} onClick={() => setMenuOpen(false)} style={{
               display: "block", padding: "10px 0", color: path === l.href ? "#22c55e" : "#6ee7a0",

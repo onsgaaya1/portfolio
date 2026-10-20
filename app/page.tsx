@@ -1,11 +1,12 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import Image from "next/image";
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import FlowerBg from "@/components/FlowerBg";
+import CurrentProjects from "@/components/CurrentProjects";
+import ProfileOrbit from "@/components/ProfileOrbit";
+import VerseFrame from "@/components/VerseFrame";
 import { Lang, projects } from "@/lib/data";
 
 const FEATURED_IDS = ["moodi", "sentiment-yelp", "stock-dashboard"];
@@ -19,10 +20,10 @@ const CAT_COLORS: Record<string, string> = {
 };
 
 const stats = [
-  { value: "13", label: { en: "Projects", fr: "Projets" } },
-  { value: "5",  label: { en: "AI Models", fr: "Modèles IA" } },
-  { value: "Bac+7", label: { en: "Degree path", fr: "Parcours" } },
-  { value: "4",  label: { en: "Platforms", fr: "Plateformes" } },
+  { value: "15", label: { en: "Projects", fr: "Projets" } },
+  { value: "6",  label: { en: "AI Models", fr: "Modèles IA" } },
+  { value: "8",  label: { en: "Years of study", fr: "Années d'études" } },
+  { value: "4",  label: { en: "Web · Mobile · Data · Game", fr: "Web · Mobile · Data · Game" } },
 ];
 
 const VERSE = {
@@ -61,23 +62,10 @@ export default function HomePage() {
       <Navbar lang={lang} onToggleLang={() => setLang(lang === "en" ? "fr" : "en")} />
 
       <main style={{ position: "relative", overflow: "hidden" }}>
-        <FlowerBg density="lush" />
-
         {/* ─── HERO ─── */}
-        <section className="section pt-24" style={{ position: "relative", zIndex: 1, paddingBottom: "1rem" }}>
-
-          {/* Photo + name */}
-          <div className="animate-fade-up" style={{
-            display: "grid", gridTemplateColumns: "auto 1fr",
-            gap: "2.5rem", alignItems: "center", maxWidth: 780,
-          }}>
-            <div className="glow-ring" style={{
-              width: 120, height: 120, borderRadius: "50%",
-              overflow: "hidden", border: "3px solid #22c55e", flexShrink: 0,
-            }}>
-              <Image src="/profile.jpg" alt="Ons Gaaya" width={120} height={120}
-                style={{ objectFit: "cover", width: "100%", height: "100%" }} priority />
-            </div>
+        <section className="section pt-20" style={{ position: "relative", zIndex: 1, paddingBottom: "0.5rem", paddingTop: "5rem" }}>
+          <div className="home-hero animate-fade-up">
+            <ProfileOrbit />
             <div>
               <p style={{ fontSize: "0.66rem", fontWeight: 800, letterSpacing: "0.16em", textTransform: "uppercase", color: "#22c55e", marginBottom: "0.5rem" }}>
                 ✦ {lang === "en" ? "Portfolio" : "Portefeuille"}
@@ -86,83 +74,55 @@ export default function HomePage() {
                 Ons Gaaya
               </h1>
               <p style={{ color: "#22c55e", fontWeight: 700, fontSize: "1rem", marginBottom: "0.4rem" }}>
-                {lang === "en" ? "Software Engineer · Full-Stack · AI · Mobile" : "Ingénieure Logiciel · Full-Stack · IA · Mobile"}
+                {lang === "en" ? "Software & AI Engineer — Tech & Business profile" : "Ingénieure logicielle & IA — Profil tech & business"}
               </p>
               <p style={{ color: "#86efac", fontSize: "0.88rem", lineHeight: 1.6, maxWidth: 480 }}>
                 {lang === "en"
-                  ? "Final-year Engineering student at EPI Digital School, Sousse. Building AI-powered apps across web, mobile & data."
-                  : "Étudiante en dernière année Cycle Ingénieur à l'EPI Digital School, Sousse. Je construis des apps IA sur web, mobile & data."}
+                  ? "5th-year Software Engineering student at EPI Digital School Sousse, with eight years of higher education in Business, ICT and Engineering. Full-stack, AI & mobile."
+                  : "Étudiante en 5e année Génie Logiciel à l'EPI Digital School Sousse, huit ans d'études supérieures en Business, TIC et Ingénierie. Full-stack, IA & mobile."}
               </p>
+
+              <div className="home-cta animate-fade-up-delay-2">
+                <Link href="/projects" className="btn-primary">
+                  {lang === "en" ? "View Projects" : "Voir les projets"}
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                    <path d="M5 12h14M12 5l7 7-7 7" />
+                  </svg>
+                </Link>
+                <a href="/CV_Ons_Gaaya.pdf" download className="btn-outline">⬇ CV</a>
+                <Link href="/contact" className="btn-outline">Contact</Link>
+              </div>
+
+              <div className="animate-fade-up-delay-2" style={{
+                display: "inline-flex", alignItems: "center", gap: 10,
+                background: "rgba(34,197,94,0.08)", border: "1px solid rgba(34,197,94,0.25)",
+                borderRadius: 999, padding: "6px 16px", marginTop: "1rem",
+              }}>
+                <span style={{ width: 8, height: 8, borderRadius: "50%", background: "#22c55e", animation: "pulse 2s infinite" }} />
+                <span style={{ color: "#86efac", fontSize: "0.82rem", fontWeight: 600 }}>
+                  {lang === "en" ? "Open to internship — Sousse & Remote 🌿" : "Disponible pour un stage — Sousse & Remote 🌿"}
+                </span>
+              </div>
             </div>
           </div>
 
-          {/* ─── VERSE 58:11 — between title and CTA ─── */}
-          <div className="animate-fade-up-delay-1" style={{
-            maxWidth: 680, marginTop: "2rem",
-            background: "linear-gradient(135deg, rgba(212,168,83,0.07), rgba(34,197,94,0.05))",
-            border: "1px solid rgba(212,168,83,0.25)",
-            borderRadius: 16, padding: "1.5rem 2rem",
-            textAlign: "center", position: "relative",
-          }}>
-            {/* Corner flowers */}
-            <svg width="24" height="24" viewBox="0 0 100 100" style={{ position: "absolute", top: 8, left: 8, opacity: 0.5 }}>
-              {[0,72,144,216,288].map(d => <ellipse key={d} cx="50" cy="22" rx="10" ry="20" fill="#d4a853" opacity="0.8" transform={`rotate(${d} 50 50)`} />)}
-              <circle cx="50" cy="50" r="11" fill="#f5f0dc" />
-            </svg>
-            <svg width="24" height="24" viewBox="0 0 100 100" style={{ position: "absolute", top: 8, right: 8, opacity: 0.5, transform: "scaleX(-1)" }}>
-              {[0,72,144,216,288].map(d => <ellipse key={d} cx="50" cy="22" rx="10" ry="20" fill="#22c55e" opacity="0.8" transform={`rotate(${d} 50 50)`} />)}
-              <circle cx="50" cy="50" r="11" fill="#f5f0dc" />
-            </svg>
-
-            <p style={{ fontSize: "0.6rem", fontWeight: 800, letterSpacing: "0.16em", textTransform: "uppercase", color: "#d4a853", marginBottom: "0.9rem" }}>
-              ✦ {VERSE.ref} ✦
-            </p>
-            <p style={{ fontFamily: "serif", fontSize: "clamp(1.1rem, 3vw, 1.5rem)", color: "#f5f0dc", lineHeight: 1.9, direction: "rtl", marginBottom: "0.7rem", fontWeight: 600 }}>
-              {VERSE.ar}
-            </p>
-            <p style={{ fontStyle: "italic", color: "#4ade80", fontSize: "0.8rem", marginBottom: "0.6rem", letterSpacing: "0.02em" }}>
-              {VERSE.phonetic}
-            </p>
-            <p style={{ color: "#86efac", fontSize: "0.88rem", lineHeight: 1.6, fontWeight: 500 }}>
-              {lang === "en" ? `"${VERSE.en}"` : `« ${VERSE.fr} »`}
-            </p>
-          </div>
-
-          {/* CTA buttons */}
-          <div className="animate-fade-up-delay-2" style={{ display: "flex", gap: "1rem", flexWrap: "wrap", marginTop: "2rem" }}>
-            <Link href="/projects" className="btn-primary">
-              {lang === "en" ? "View Projects" : "Voir les projets"}
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                <path d="M5 12h14M12 5l7 7-7 7" />
-              </svg>
-            </Link>
-            <a href="/CV_Ons_Gaaya.pdf" download className="btn-outline">⬇ CV</a>
-            <Link href="/contact" className="btn-outline">
-              {lang === "en" ? "Contact" : "Contact"}
-            </Link>
-          </div>
-
-          {/* Status badge */}
-          <div className="animate-fade-up-delay-2" style={{
-            display: "inline-flex", alignItems: "center", gap: 10,
-            background: "rgba(34,197,94,0.08)", border: "1px solid rgba(34,197,94,0.25)",
-            borderRadius: 999, padding: "8px 18px", marginTop: "1.5rem",
-          }}>
-            <span style={{ width: 8, height: 8, borderRadius: "50%", background: "#22c55e", animation: "pulse 2s infinite" }} />
-            <span style={{ color: "#86efac", fontSize: "0.82rem", fontWeight: 600 }}>
-              {lang === "en" ? "Open to internship — Sousse & Remote 🌿" : "Disponible pour un stage — Sousse & Remote 🌿"}
-            </span>
+          {/* ─── VERSE 58:11 ─── */}
+          <div className="animate-fade-up-delay-1" style={{ maxWidth: 720, margin: "0.9rem auto 0" }}>
+            <VerseFrame
+              arabic={VERSE.ar} en={VERSE.en} fr={VERSE.fr} lang={lang}
+              surah={{ en: "Al-Mujādila", fr: "Al-Mujâdala" }} refNum="58:11" highlight="الْعِلْمَ"
+            />
           </div>
         </section>
 
         {/* ─── STATS ─── */}
-        <section className="section" style={{ position: "relative", zIndex: 1, paddingTop: "1.5rem", paddingBottom: "1.5rem" }}>
+        <section className="section" style={{ position: "relative", zIndex: 1, paddingTop: "1rem", paddingBottom: "1rem" }}>
           <div className="animate-fade-up-delay-2" style={{
-            display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "1rem", maxWidth: 700,
+            display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "1rem",
           }}>
             {stats.map(s => (
-              <div key={s.value} className="glass-card" style={{ padding: "1rem", textAlign: "center" }}>
-                <p style={{ fontWeight: 900, fontSize: "1.8rem", color: "#22c55e", lineHeight: 1 }}>{s.value}</p>
+              <div key={s.value} className="glass-card" style={{ padding: "0.6rem", textAlign: "center" }}>
+                <p style={{ fontWeight: 900, fontSize: "1.5rem", color: "#22c55e", lineHeight: 1 }}>{s.value}</p>
                 <p style={{ color: "#86efac", fontSize: "0.72rem", fontWeight: 700, marginTop: "0.3rem" }}>{s.label[lang]}</p>
               </div>
             ))}
@@ -172,18 +132,8 @@ export default function HomePage() {
         {/* ─── FEATURED WORK ─── */}
         <section className="section" style={{ position: "relative", zIndex: 1, paddingTop: "2rem" }}>
           <div className="animate-fade-up-delay-3">
-            <div style={{ marginBottom: "1.75rem" }}>
-              <div className="accent-bar" />
-              <h2 style={{ fontWeight: 900, fontSize: "clamp(1.5rem, 3.5vw, 2rem)", color: "#ecfdf5" }}>
-                {lang === "en" ? "A taste of my work" : "Un aperçu de mon travail"}
-              </h2>
-              <p style={{ color: "#6ee7a0", fontSize: "0.88rem", marginTop: "0.4rem" }}>
-                {lang === "en" ? "AI · Full-Stack · Mobile — built with care" : "IA · Full-Stack · Mobile — conçu avec soin"}
-              </p>
-            </div>
-
             {/* ─── VIDEO 3/4 width centered, autoplay on scroll ─── */}
-            <div ref={videoRef} style={{ maxWidth: "75%", margin: "0 auto 2rem" }}>
+            <div ref={videoRef} style={{ maxWidth: "75%", margin: "0 auto 3rem" }}>
               <div className="glass-card" style={{ padding: "1rem" }}>
                 <p style={{ fontSize: "0.65rem", fontWeight: 800, letterSpacing: "0.12em", textTransform: "uppercase", color: "#4ade8088", marginBottom: "0.75rem" }}>
                   🎬 {lang === "en" ? "Live demo — Moodi (AI Emotional Tracking)" : "Démo live — Moodi (Suivi émotionnel par IA)"}
@@ -213,6 +163,19 @@ export default function HomePage() {
                   </Link>
                 </div>
               </div>
+            </div>
+
+            <div style={{ marginBottom: "3rem" }}>
+              <CurrentProjects lang={lang} />
+            </div>
+            <div style={{ marginBottom: "1.75rem" }}>
+              <div className="accent-bar" />
+              <h2 style={{ fontWeight: 900, fontSize: "clamp(1.5rem, 3.5vw, 2rem)", color: "#ecfdf5" }}>
+                {lang === "en" ? "A taste of my work" : "Un aperçu de mon travail"}
+              </h2>
+              <p style={{ color: "#6ee7a0", fontSize: "0.88rem", marginTop: "0.4rem" }}>
+                {lang === "en" ? "AI · Full-Stack · Mobile — built with care" : "IA · Full-Stack · Mobile — conçu avec soin"}
+              </p>
             </div>
 
             {/* 3 featured mini-cards */}
@@ -245,9 +208,10 @@ export default function HomePage() {
 
             <div style={{ textAlign: "center", marginTop: "2rem" }}>
               <Link href="/projects" className="btn-outline" style={{ display: "inline-flex" }}>
-                {lang === "en" ? "View all 13 projects →" : "Voir mes 13 projets →"}
+                {lang === "en" ? "View all 15 projects →" : "Voir mes 15 projets →"}
               </Link>
             </div>
+
           </div>
         </section>
 

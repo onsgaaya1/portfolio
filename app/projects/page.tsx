@@ -3,8 +3,8 @@
 import { useState } from "react";
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
+import StatusBadge from "@/components/StatusBadge";
 import Footer from "@/components/Footer";
-import FlowerBg from "@/components/FlowerBg";
 import { Lang, t, projects, Project, Category, ALL_TECHS } from "@/lib/data";
 
 const ALL_CATEGORIES: Category[] = ["AI/ML/DL", "Web", "Mobile", "Game", "Data"];
@@ -72,14 +72,8 @@ export default function ProjectsPage() {
       <Navbar lang={lang} onToggleLang={() => setLang(lang === "en" ? "fr" : "en")} />
 
       <main className="pt-24" style={{ position: "relative", overflow: "hidden" }}>
-        {/* decorative background — never blocks clicks */}
-        <div style={{ position: "absolute", inset: 0, zIndex: 0, pointerEvents: "none" }}>
-          <FlowerBg density="normal" />
-        </div>
-
         {/* Hero — pointerEvents none so it never blocks clicks below */}
         <div style={{ position: "relative", overflow: "hidden", paddingBottom: "3rem", pointerEvents: "none" }}>
-          <FlowerBg density="lush" />
           <div className="section" style={{ paddingBottom: "2rem", position: "relative", zIndex: 1, pointerEvents: "auto" }}>
             <div className="animate-fade-up">
               <div className="accent-bar" />
@@ -95,8 +89,8 @@ export default function ProjectsPage() {
               <div style={{ display: "flex", gap: "2rem", flexWrap: "wrap" }}>
                 {[
                   { n: String(projects.length), label: lang === "en" ? "Projects" : "Projets" },
-                  { n: "5", label: lang === "en" ? "AI/ML models" : "Modeles IA" },
-                  { n: "4", label: lang === "en" ? "Platforms" : "Plateformes" },
+                  { n: "6", label: lang === "en" ? "AI/ML models" : "Modèles IA" },
+                  { n: "4", label: "Web · Mobile · Data · Game" },
                 ].map(s => (
                   <div key={s.n} style={{ textAlign: "center" }}>
                     <div style={{ fontSize: "1.8rem", fontWeight: 900, color: "#22c55e", lineHeight: 1 }}>{s.n}</div>
@@ -263,6 +257,7 @@ function ProjectCard({ project, lang, tr }: {
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "0.9rem" }}>
         <span style={{ fontSize: "2.2rem", lineHeight: 1 }}>{project.emoji}</span>
         <div style={{ display: "flex", flexWrap: "wrap", gap: 4, justifyContent: "flex-end" }}>
+          {project.status === "in-progress" && <StatusBadge status={project.status} lang={lang} compact />}
           {project.categories.map(cat => (
             <span key={cat} style={{
               fontSize: "0.68rem", fontWeight: 700, padding: "2px 9px", borderRadius: 999,

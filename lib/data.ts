@@ -29,6 +29,39 @@ export type Category = "AI/ML/DL" | "Web" | "Mobile" | "Game" | "Data";
 
 export const projects: Project[] = [
   {
+    id: "soul-mirror",
+    title: "Soul Mirror",
+    emoji: "🪞",
+    shortDesc: {
+      en: "Flutter wellbeing app — journal, daily routine, prayer times and a full Quran reader",
+      fr: "Application Flutter de bien-être spirituel — journal, routine, prières et lecteur de Coran",
+    },
+    longDesc: {
+      en: "Multi-screen Flutter app: personal journal, daily routine, prayer times and a full Quran reader. Right-to-left Arabic text (Amiri font), French translation, verse-by-verse audio recitation, persistent bookmarks and multi-mode search (French word, Arabic word, reference such as 2:255). REST API integration with offline mode.",
+      fr: "Application Flutter multi-écrans : journal personnel, routine quotidienne, horaires de prière et lecteur de Coran complet. Texte arabe en RTL (police Amiri), traduction française, récitation audio verset par verset, marque-page persistant et recherche multi-modes (mot français, mot arabe, référence 2:255). Intégration API REST avec gestion du mode hors ligne.",
+    },
+    techs: ["Flutter", "Dart", "REST API", "just_audio", "shared_preferences", "i18n / RTL"],
+    categories: ["Mobile"],
+    status: "in-progress",
+  },
+  {
+    id: "al-quran-onsi",
+    title: "Al Quran Onsi",
+    emoji: "📖",
+    shortDesc: {
+      en: "Quran reading and semantic search by feeling — React Native + FastAPI + FAISS",
+      fr: "Lecture du Coran et recherche sémantique par émotion — React Native + FastAPI + FAISS",
+    },
+    longDesc: {
+      en: "Mobile app with two ways into the Quran: classic reading of the 114 surahs, and semantic search by feeling, where the user says what they feel and finds the verses that answer it. Right-to-left Arabic reader with translation and audio recitation. Search engine over all 6,236 verses using multilingual embeddings and a FAISS vector index, served by a FastAPI microservice.",
+      fr: "Application mobile offrant deux entrées dans le Coran : la lecture classique des 114 sourates, et une recherche sémantique par émotion où l'utilisateur exprime ce qu'il ressent pour trouver les versets qui y répondent. Lecteur arabe RTL avec traduction et récitation audio. Moteur de recherche sur les 6 236 versets via embeddings multilingues et index vectoriel FAISS, exposé par un microservice FastAPI.",
+    },
+    techs: ["React Native", "FastAPI", "Sentence Transformers", "FAISS", "i18n / RTL", "HuggingFace Spaces"],
+    categories: ["Mobile", "AI/ML/DL"],
+    highlight: "6,236 verses · FAISS semantic search",
+    status: "in-progress",
+  },
+  {
     id: "moodi",
     title: "Moodi",
     emoji: "🧠",
@@ -388,8 +421,8 @@ export const t = {
   projects: {
     title: { en: "My Projects", fr: "Mes Projets" },
     subtitle: {
-      en: "13 projects across AI/ML, full-stack web, mobile, and game development",
-      fr: "13 projets en IA/ML, web full-stack, mobile et jeu vidéo",
+      en: "15 projects across AI/ML, full-stack web, mobile, and game development",
+      fr: "15 projets en IA/ML, web full-stack, mobile et jeu vidéo",
     },
     all: { en: "All", fr: "Tous" },
     github: { en: "Code", fr: "Code" },
@@ -400,14 +433,11 @@ export const t = {
     close: { en: "Close", fr: "Fermer" },
     techs: { en: "Tech Stack", fr: "Stack Technique" },
     status_done: { en: "Completed", fr: "Terminé" },
+    status_progress: { en: "In development", fr: "En développement" },
     back: { en: "Back to projects", fr: "Retour aux projets" },
   },
   about: {
     title: { en: "About Me", fr: "À Propos" },
-    intro: {
-      en: "4th-year Software Engineering student at EPI Digital School, Sousse. I followed an unconventional Bac+7 path — Business Administration → ICT Preparatory → Software Engineering — which gave me both technical depth and a rare business perspective.",
-      fr: "Étudiante en 4ème année Génie Logiciel à EPI Digital School, Sousse. J'ai suivi un parcours Bac+7 atypique — Administration des Affaires → Prépa ICT → Génie Logiciel — qui m'a donné une profondeur technique et une rare perspective business.",
-    },
     skills_title: { en: "Skills", fr: "Compétences" },
     certs_title: { en: "Certifications", fr: "Certifications" },
     edu_title: { en: "Education", fr: "Formation" },

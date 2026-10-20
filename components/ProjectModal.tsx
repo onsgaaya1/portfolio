@@ -1,5 +1,6 @@
 "use client";
 
+import StatusBadge from "@/components/StatusBadge";
 import { useEffect } from "react";
 import { Project, Lang, t } from "@/lib/data";
 
@@ -33,7 +34,7 @@ export default function ProjectModal({ project, lang, onClose }: ProjectModalPro
 
       <div style={{
         width: "100%", maxWidth: 700, maxHeight: "90vh", overflowY: "auto",
-        background: "rgba(6, 26, 13, 0.92)",
+        background: "rgba(4, 28, 46, 0.92)",
         backdropFilter: "blur(24px)",
         WebkitBackdropFilter: "blur(24px)",
         border: "1px solid rgba(34, 197, 94, 0.25)",
@@ -53,13 +54,7 @@ export default function ProjectModal({ project, lang, onClose }: ProjectModalPro
             <div>
               <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", marginBottom: "0.6rem" }}>
                 <span style={{ fontSize: "2.8rem", lineHeight: 1 }}>{project.emoji}</span>
-                <span style={{
-                  fontSize: "0.7rem", fontWeight: 800, padding: "3px 12px", borderRadius: 999,
-                  background: "rgba(34,197,94,0.12)", color: "#22c55e",
-                  border: "1px solid rgba(34,197,94,0.3)", letterSpacing: "0.06em",
-                }}>
-                  ✓ {t.projects.status_done[lang]}
-                </span>
+                <StatusBadge status={project.status} lang={lang} />
               </div>
               <h2 style={{ fontWeight: 900, fontSize: "1.7rem", color: "#ecfdf5", lineHeight: 1.2 }}>
                 {project.title}

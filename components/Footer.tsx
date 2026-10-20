@@ -5,7 +5,7 @@ export default function Footer({ lang }: { lang: Lang }) {
   return (
     <footer style={{
       borderTop: "1px solid rgba(34,197,94,0.12)",
-      background: "rgba(6,26,13,0.6)",
+      background: "linear-gradient(180deg, rgba(5,38,58,0.35), rgba(4,26,22,0.6))",
       backdropFilter: "blur(12px)",
       marginTop: "4rem",
       padding: "3rem 1.5rem",
