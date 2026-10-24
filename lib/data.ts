@@ -58,7 +58,7 @@ export const projects: Project[] = [
     },
     techs: ["React Native", "FastAPI", "Sentence Transformers", "FAISS", "i18n / RTL", "HuggingFace Spaces"],
     categories: ["Mobile", "AI/ML/DL"],
-    video: "https://www.youtube.com/embed/Q_eeNo8ZLx0",
+    video: "https://www.youtube.com/embed/DH6IVCDCxI8",
     highlight: "6,236 verses · FAISS semantic search",
     status: "in-progress",
   },

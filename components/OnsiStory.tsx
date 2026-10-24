@@ -36,7 +36,7 @@ const NAME = {
 };
 
 const VIDEO = {
-  length: "1:42",
+  length: "1:41",
   play: { en: "Watch the concept", fr: "Voir le concept" },
   soon: { en: "development starting soon", fr: "développement à venir" },
   title: { en: "Al Quran Onsi — concept video", fr: "Al Quran Onsi — vidéo du concept" },
