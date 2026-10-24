@@ -23,10 +23,10 @@ export default function Navbar({ lang, onToggleLang }: NavbarProps) {
 
   return (
     <nav className="nav-glass fixed top-0 left-0 right-0 z-50">
-      <div style={{ maxWidth: 1100, margin: "0 auto", padding: "0 1.5rem", height: 64, display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+      <div className="nav-inner" style={{ maxWidth: 1100, margin: "0 auto", height: 64, display: "flex", alignItems: "center", justifyContent: "space-between" }}>
 
         {/* Logo */}
-        <Link href="/" style={{ display: "flex", alignItems: "center", gap: "0.5rem", textDecoration: "none" }}>
+        <Link href="/" style={{ display: "flex", alignItems: "center", gap: "0.5rem", textDecoration: "none", flexShrink: 0, padding: "8px 0" }}>
           {/* Flower logo */}
           <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
             <ellipse cx="14" cy="7" rx="4" ry="7" fill="#22c55e" opacity="0.8" />
@@ -37,13 +37,13 @@ export default function Navbar({ lang, onToggleLang }: NavbarProps) {
             <ellipse cx="14" cy="7" rx="4" ry="7" fill="#86efac" opacity="0.6" transform="rotate(300 14 14)" />
             <circle cx="14" cy="14" r="5" fill="#22c55e" />
           </svg>
-          <span style={{ fontWeight: 800, fontSize: "1.05rem", color: "#ecfdf5", letterSpacing: "-0.02em" }}>
+          <span style={{ fontWeight: 800, fontSize: "1.05rem", color: "#ecfdf5", letterSpacing: "-0.02em", whiteSpace: "nowrap" }}>
             Ons <span style={{ color: "#22c55e" }}>Gaaya</span>
           </span>
         </Link>
 
         {/* Desktop links */}
-        <div style={{ display: "flex", alignItems: "center", gap: "0.25rem" }} className="hidden md:flex">
+        <div style={{ alignItems: "center", gap: "0.25rem" }} className="hidden md:flex">
           {links.map(l => (
             <Link key={l.href} href={l.href} style={{
               padding: "6px 16px", borderRadius: 8, fontSize: "0.9rem", fontWeight: 500,
@@ -63,13 +63,13 @@ export default function Navbar({ lang, onToggleLang }: NavbarProps) {
             display: "flex", alignItems: "center", gap: 2, padding: 3, borderRadius: 999,
             background: "rgba(34,197,94,0.1)", border: "1px solid rgba(110,215,200,0.3)",
           }}>
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#86efac" strokeWidth="2" style={{ margin: "0 4px 0 7px" }} aria-hidden="true">
+            <svg className="nav-globe" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#86efac" strokeWidth="2" style={{ margin: "0 4px 0 7px" }} aria-hidden="true">
               <circle cx="12" cy="12" r="9" /><path d="M3 12h18M12 3c2.8 3 2.8 15 0 18M12 3c-2.8 3-2.8 15 0 18" />
             </svg>
             {(["en", "fr"] as const).map(l => (
-              <button key={l} onClick={() => { if (lang !== l) onToggleLang(); }} aria-pressed={lang === l}
+              <button key={l} className="nav-lang-btn" onClick={() => { if (lang !== l) onToggleLang(); }} aria-pressed={lang === l}
                 title={l === "en" ? "English" : "Français"} style={{
-                  border: "none", cursor: "pointer", borderRadius: 999, padding: "4px 11px",
+                  border: "none", cursor: "pointer", borderRadius: 999,
                   fontSize: "0.76rem", fontWeight: 800, letterSpacing: "0.06em",
                   background: lang === l ? "#22c55e" : "transparent",
                   color: lang === l ? "#04203a" : "#86efac",
@@ -83,7 +83,9 @@ export default function Navbar({ lang, onToggleLang }: NavbarProps) {
           <button
             className="md:hidden"
             onClick={() => setMenuOpen(!menuOpen)}
-            style={{ background: "none", border: "none", color: "#86efac", cursor: "pointer", padding: 4 }}
+            aria-label="Menu"
+            aria-expanded={menuOpen}
+            style={{ background: "none", border: "none", color: "#86efac", cursor: "pointer", padding: 9, margin: "0 -5px 0 -5px" }}
           >
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               {menuOpen

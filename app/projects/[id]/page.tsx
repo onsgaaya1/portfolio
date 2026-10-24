@@ -56,7 +56,7 @@ export default function ProjectDetailPage() {
 
           {/* Back link */}
           <Link href="/projects"
-            className="animate-fade-up"
+            className="animate-fade-up tap"
             style={{
               display: "inline-flex", alignItems: "center", gap: 6,
               color: "#6ee7a0", textDecoration: "none", fontSize: "0.85rem", fontWeight: 600,

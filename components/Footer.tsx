@@ -56,7 +56,7 @@ export default function Footer({ lang }: { lang: Lang }) {
             { href: "/about", label: lang === "en" ? "About" : "À propos" },
             { href: "/contact", label: "Contact" },
           ].map(l => (
-            <Link key={l.href} href={l.href} style={{ color: "#6ee7a0", textDecoration: "none", fontSize: "0.85rem", fontWeight: 500 }}>
+            <Link key={l.href} href={l.href} className="tap" style={{ color: "#6ee7a0", textDecoration: "none", fontSize: "0.85rem", fontWeight: 500 }}>
               {l.label}
             </Link>
           ))}

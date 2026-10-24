@@ -197,7 +197,7 @@ export default function ProjectsPage() {
           {/* Grid */}
           <div
             className="animate-fade-up-delay-2"
-            style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(320px, 1fr))", gap: "1.25rem" }}
+            style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(min(320px, 100%), 1fr))", gap: "1.25rem" }}
           >
             {filtered.map(project => (
               <ProjectCard key={project.id} project={project} lang={lang} tr={tr} />

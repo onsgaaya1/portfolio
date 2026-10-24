@@ -98,10 +98,13 @@ body {
   border-radius: 20px;
   transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
-.glass-card:hover {
-  transform: translateY(-6px);
-  border-color: rgba(34, 197, 94, 0.45);
-  box-shadow: 0 20px 60px rgba(16, 132, 63, 0.2), 0 0 0 1px rgba(34, 197, 94, 0.12);
+/* Hover lift only where a mouse exists (on a phone it would stay stuck after a tap) */
+@media (hover: hover) {
+  .glass-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(34, 197, 94, 0.45);
+    box-shadow: 0 20px 60px rgba(16, 132, 63, 0.2), 0 0 0 1px rgba(34, 197, 94, 0.12);
+  }
 }
 
 /* ============================================
@@ -124,6 +127,28 @@ body {
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border-bottom: 1px solid var(--glass-border);
+}
+.nav-inner { padding: 0 1.5rem; }
+.nav-lang-btn { padding: 4px 11px; }
+/* Phones: bigger language buttons, and the bar stays on one line down to 320px */
+@media (max-width: 767px) {
+  .nav-lang-btn { padding: 8px 12px; }
+}
+@media (max-width: 380px) {
+  .nav-inner { padding: 0 1rem; }
+  .nav-globe { display: none; }
+}
+
+/* ============================================
+   PHONES — touch comfort (desktop is untouched)
+   ============================================ */
+@media (max-width: 767px) {
+  /* iPhone zooms the whole page when a field's text is smaller than 16px */
+  input, textarea, select { font-size: 16px !important; }
+  /* small text links get a taller touch area (about 40px) */
+  .tap { padding-top: 9px; padding-bottom: 9px; }
+  /* contact cards: the whole card is the tap area, not just the small text */
+  .card-link::after { content: ""; position: absolute; inset: 0; border-radius: inherit; }
 }
 
 /* ============================================
@@ -424,6 +449,8 @@ body {
    ============================================ */
 .home-hero { display: grid; grid-template-columns: auto 1fr; gap: .5rem 1.5rem; align-items: center; }
 .home-cta { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1.1rem; }
+.home-stats { grid-template-columns: repeat(4, 1fr); }
+@media (max-width: 640px) { .home-stats { grid-template-columns: repeat(2, 1fr); } }
 
 .po { position: relative; width: 290px; height: 290px; margin: 44px 44px 44px 52px; flex-shrink: 0; }
 .po-disc {

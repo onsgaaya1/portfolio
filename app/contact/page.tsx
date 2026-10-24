@@ -52,16 +52,16 @@ export default function ContactPage() {
             <p style={{ color: "#6ee7a0", fontSize: "1.05rem" }}>{tr.subtitle[lang]}</p>
           </div>
 
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "3rem" }} className="grid-cols-1 md:grid-cols-2">
+          <div style={{ display: "grid", gap: "3rem" }} className="grid-cols-1 md:grid-cols-2">
             {/* Left — Contact info */}
             <div className="animate-fade-up-delay-1" style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
               {contacts.map(({ icon, label, value, href }) => (
-                <div key={label} className="glass-card" style={{ padding: "1rem 1.25rem", display: "flex", alignItems: "center", gap: "1rem" }}>
+                <div key={label} className="glass-card" style={{ padding: "1rem 1.25rem", display: "flex", alignItems: "center", gap: "1rem", position: "relative" }}>
                   <span style={{ fontSize: "1.7rem" }}>{icon}</span>
                   <div>
                     <p style={{ fontSize: "0.68rem", fontWeight: 800, letterSpacing: "0.1em", textTransform: "uppercase", color: "#4ade8088" }}>{label}</p>
                     {href ? (
-                      <a href={href} target="_blank" rel="noopener noreferrer"
+                      <a href={href} target="_blank" rel="noopener noreferrer" className="card-link"
                         style={{ color: "#ecfdf5", fontSize: "0.9rem", fontWeight: 600, textDecoration: "none" }}
                         onMouseEnter={e => (e.currentTarget.style.color = "#22c55e")}
                         onMouseLeave={e => (e.currentTarget.style.color = "#ecfdf5")}

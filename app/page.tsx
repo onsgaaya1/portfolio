@@ -117,8 +117,8 @@ export default function HomePage() {
 
         {/* ─── STATS ─── */}
         <section className="section" style={{ position: "relative", zIndex: 1, paddingTop: "1rem", paddingBottom: "1rem" }}>
-          <div className="animate-fade-up-delay-2" style={{
-            display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "1rem",
+          <div className="home-stats animate-fade-up-delay-2" style={{
+            display: "grid", gap: "1rem",
           }}>
             {stats.map(s => (
               <div key={s.value} className="glass-card" style={{ padding: "0.6rem", textAlign: "center" }}>
@@ -133,7 +133,7 @@ export default function HomePage() {
         <section className="section" style={{ position: "relative", zIndex: 1, paddingTop: "2rem" }}>
           <div className="animate-fade-up-delay-3">
             {/* ─── VIDEO 3/4 width centered, autoplay on scroll ─── */}
-            <div ref={videoRef} style={{ maxWidth: "75%", margin: "0 auto 3rem" }}>
+            <div ref={videoRef} className="video-wrapper" style={{ maxWidth: "75%", margin: "0 auto 3rem" }}>
               <div className="glass-card" style={{ padding: "1rem" }}>
                 <p style={{ fontSize: "0.65rem", fontWeight: 800, letterSpacing: "0.12em", textTransform: "uppercase", color: "#4ade8088", marginBottom: "0.75rem" }}>
                   🎬 {lang === "en" ? "Live demo — Moodi (AI Emotional Tracking)" : "Démo live — Moodi (Suivi émotionnel par IA)"}

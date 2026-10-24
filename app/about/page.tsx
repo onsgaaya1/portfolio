@@ -4,6 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import Navbar from "@/components/Navbar";
 import GratitudeNote from "@/components/GratitudeNote";
+import OnsiStory from "@/components/OnsiStory";
 import VerseFrame from "@/components/VerseFrame";
 import CurrentProjects from "@/components/CurrentProjects";
 import Footer from "@/components/Footer";
@@ -118,13 +119,6 @@ export default function AboutPage() {
       fr: "Et faites le bien. Certes, Allah aime les bienfaisants.",
     },
     {
-      ar: "﴿وَأَمَّا مَا يَنفَعُ النَّاسَ فَيَمْكُثُ فِي الْأَرْضِ﴾",
-      refNum: "13:17", surah: { en: "Ar-Raʿd", fr: "Ar-Raʿd" }, highlight: "يَنفَعُ النَّاسَ",
-      phonetic: "Wa ammā mā yanfaʿu-n-nāsa fa-yamkuthu fi-l-arḍ",
-      en: "But what benefits the people remains on the earth.",
-      fr: "Mais ce qui est utile aux hommes demeure sur la terre.",
-    },
-    {
       ar: "﴿وَقُل رَّبِّ زِدْنِي عِلْمًا﴾",
       refNum: "20:114", surah: { en: "Ṭā-Hā", fr: "Tâ-Hâ" }, highlight: "عِلْمًا",
       phonetic: "Wa qul rabbi zidnī ʿilmā",
@@ -142,7 +136,7 @@ export default function AboutPage() {
 
           {/* ─── HERO / INTRO ─── */}
           <div style={{ position: "relative" }} className="animate-fade-up">
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "3rem", alignItems: "start", position: "relative", zIndex: 1 }}
+            <div style={{ display: "grid", gap: "3rem", alignItems: "start", position: "relative", zIndex: 1 }}
               className="grid-cols-1 md:grid-cols-2">
 
               {/* Left: photo + intro */}
@@ -211,6 +205,9 @@ export default function AboutPage() {
           <div style={{ maxWidth: 760, margin: "0 auto", width: "100%" }}>
             <CurrentProjects lang={lang} showLearning />
           </div>
+
+          {/* ─── WHY ONSI (the story behind Al Quran Onsi) ─── */}
+          <OnsiStory lang={lang} />
 
           {/* ─── IN MY OWN WORDS (LinkedIn About) ─── */}
           <GratitudeNote lang={lang} />
