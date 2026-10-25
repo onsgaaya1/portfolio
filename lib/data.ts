@@ -37,11 +37,13 @@ export const projects: Project[] = [
       fr: "Application Flutter de bien-être spirituel — journal, routine, prières et lecteur de Coran",
     },
     longDesc: {
-      en: "Multi-screen Flutter app: personal journal, daily routine, prayer times and a full Quran reader. Right-to-left Arabic text (Amiri font), French translation, verse-by-verse audio recitation, persistent bookmarks and multi-mode search (French word, Arabic word, reference such as 2:255). REST API integration with offline mode.",
-      fr: "Application Flutter multi-écrans : journal personnel, routine quotidienne, horaires de prière et lecteur de Coran complet. Texte arabe en RTL (police Amiri), traduction française, récitation audio verset par verset, marque-page persistant et recherche multi-modes (mot français, mot arabe, référence 2:255). Intégration API REST avec gestion du mode hors ligne.",
+      en: "Soul Mirror — مرآة الروح, “the mirror of your soul” — is a calm Flutter app to care for your soul under a starry sky. Diary: write your day, choose a moon phase for your mood and add a photo; each page becomes a moon in your monthly sky. Favorite routine: daily steps whose stars light up as you complete them. Prayer & Quran: prayer times by city with gentle reminders, and a right-to-left Quran reader (Amiri font) with French translation, verse-by-verse audio recitation, an automatic bookmark, a daily reading goal that checks off your routine, and search by French word, Arabic word or reference such as 2:255. French, English and Arabic, three night themes and a PIN lock. REST API integration with offline mode. The concept video walks through every screen, from the animated splash to the profile.",
+      fr: "Soul Mirror — مرآة الروح, « le miroir de ton âme » — est une application Flutter apaisante pour prendre soin de son âme sous un ciel étoilé. Journal : écrire sa journée, choisir une phase de lune pour son humeur et ajouter une photo ; chaque page devient une lune dans le ciel du mois. Routine préférée : des étapes quotidiennes dont les étoiles s'allument une à une. Prière & Coran : horaires de prière selon la ville avec de doux rappels, et lecteur de Coran en RTL (police Amiri) avec traduction française, récitation audio verset par verset, marque-page automatique, objectif de lecture quotidien qui coche la routine, et recherche par mot français, mot arabe ou référence (2:255). Français, anglais et arabe, trois thèmes de nuit et verrouillage par code PIN. Intégration API REST avec mode hors ligne. La vidéo du concept parcourt chaque écran, du splash animé jusqu'au profil.",
     },
     techs: ["Flutter", "Dart", "REST API", "just_audio", "shared_preferences", "i18n / RTL"],
     categories: ["Mobile"],
+    video: "https://www.youtube.com/embed/w3zM42undlo",
+    highlight: "Diary · Routine · Prayer & Quran",
     status: "in-progress",
   },
   {
