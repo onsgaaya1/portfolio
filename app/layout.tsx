@@ -20,13 +20,13 @@ const amiri = Amiri({
 });
 
 export const metadata: Metadata = {
-  title: "Ons Gaaya — Full-Stack & AI Developer",
+  title: "Ons Gaaya — Software & AI Engineer",
   description:
-    "Portfolio of Ons Gaaya, Software Engineering student at EPI Digital School. Full-Stack & AI developer specializing in Angular, ASP.NET Core, React Native, and DistilBERT.",
-  keywords: ["Full-Stack", "AI", "Angular", "ASP.NET Core", "React Native", "DistilBERT", "Tunisia"],
+    "Portfolio of Ons Gaaya, Software Engineering student at EPI Digital School. Software & AI engineer specializing in Angular, ASP.NET Core, React Native, and DistilBERT.",
+  keywords: ["Software Engineer", "AI", "Full-Stack", "Angular", "ASP.NET Core", "React Native", "DistilBERT", "Tunisia"],
   authors: [{ name: "Ons Gaaya" }],
   openGraph: {
-    title: "Ons Gaaya — Full-Stack & AI Developer",
+    title: "Ons Gaaya — Software & AI Engineer",
     description: "15 projects across AI/ML, full-stack web, and mobile development.",
     type: "website",
   },
